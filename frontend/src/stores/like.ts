@@ -28,7 +28,7 @@ export const useLikeStore = defineStore('like', {
     async isServiceFavorite(service_id:number) {
       try {
       const response = await getIsFavorite(service_id);
-      this.isFavorited = response.data.data
+      this.isFavorited = response.data.data ? true : false;
       }catch (error) {
         console.error('Failed to fetch likes:', error);
       } 
