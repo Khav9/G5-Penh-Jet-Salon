@@ -106,3 +106,6 @@ Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
 Route::middleware('auth:sanctum')->prefix('chat')->group( function (){
     Route::post('/create',[MessageController::class, 'store']);
 });
+
+
+Route::get('/getAllUser', [UserController::class, 'index']);

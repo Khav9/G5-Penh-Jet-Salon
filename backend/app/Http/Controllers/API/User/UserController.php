@@ -7,6 +7,7 @@ use App\Models\QRcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -16,6 +17,10 @@ class UserController extends Controller
     public function index()
     {
         //
+        $user = User::All();
+        return response()->json([
+            'data' => $user
+        ]);
     }
 
     /**
