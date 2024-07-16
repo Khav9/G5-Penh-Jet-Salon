@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <template>
   <div>
     <div class="flex items-center justify-center p-3 flex-wrap bg-pink-500 sticky top-0 z-50 md:flex-nowrap">
@@ -44,7 +45,6 @@
       <div class="col-span-2 ml-6 overflow-y-auto">
         <form @submit.prevent="create">
           <div class="grid grid-cols-2 mb-0 gap-x-5 gap-y-0">
-            <!-- card service -->
             <div
               v-for="service in filteredServices"
               :key="service.id"
@@ -72,12 +72,16 @@
                   {{ service.description }}
                 </p>
               </div>
-              <div class="relative w-30 h-30 mr-5">
-                <img
-                  class="w-full h-full object-cover rounded-lg"
-                  :src="baseURL + service.image"
-                  alt="Service Image"
-                />
+              <div class="relative w-32 h-32 mr-5">
+                <router-link 
+                  :to="{ name: 'comment', params: { id: service.id } }"
+                >
+                  <img
+                    class="w-full h-full object-cover rounded-lg"
+                    :src="baseURL + service.image"
+                    alt="Service Image"
+                  />
+                </router-link>
                 <button
                   @click="addToCart(service.id)"
                   class="absolute bottom-2 right-2 bg-white rounded-full p-1 shadow-md"
@@ -102,10 +106,8 @@
         </form>
       </div>
 
-      <!-- booking -->
       <div class="col-span-1">
-        <div class="sticky top-40 z-10">
-          <!-- cardItem -->
+        <div class="sticky z-10">
           <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden p-3">
             <div class="max-h-77 overflow-y-auto pl-3">
               <div class="text-center">
@@ -170,13 +172,8 @@
                     </div>
                   </div>
                 </div>
-                <div v-else class="text-center text-gray-500 font-semibold">
-                  Your cart is empty.
-                </div>
-                <!-- end cart items -->
               </div>
             </div>
-            <!-- total price -->
             <div class="border-t mt-4 pt-4">
               <div class="flex justify-between items-center">
                 <span class="font-semibold text-gray-900">Total:</span>
@@ -203,7 +200,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useServiceStore } from '../../../stores/service';
-import {useCardStore} from '../../../stores/pre-booking'
+import { useCardStore } from '../../../stores/pre-booking';
 import baseURL from '../../../api/url';
 import { useCategoryStore } from '../../../stores/category';
 const useCategory = useCategoryStore();
@@ -223,6 +220,36 @@ const calculateTotalPrice = () => {
   });
   return totalPrice;
 };
+const cardStore = ref({
+  items: [],
+  totalPrice: 0,
+  addItem: (id: number) => {
+    const item = serviceStore.services.find(service => service.id === id);
+    if (item) {
+      const existingItem = cardStore.value.items.find(i => i.id === id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cardStore.value.items.push({ ...item, quantity: 1 });
+      }
+      cardStore.value.totalPrice = calculateTotalPrice();
+    }
+  },
+  removeItem: (id: number) => {
+    const item = cardStore.value.items.find(i => i.id === id);
+    if (item) {
+      cardStore.value.items = cardStore.value.items.filter(i => i.id !== id);
+      cardStore.value.totalPrice = calculateTotalPrice();
+    }
+  },
+  increaseQuantity: (id: number) => {
+    const item = cardStore.value.items.find(i => i.id === id);
+    if (item) {
+      item.quantity++;
+      cardStore.value.totalPrice = calculateTotalPrice();
+    }
+  }
+});
 
 const fetchService = async () => {
   const id = route.params.id;
@@ -265,7 +292,4 @@ onMounted(async () => {
   fetchAllCardService();
   getAllCategories();
 });
-
 </script>
-
-

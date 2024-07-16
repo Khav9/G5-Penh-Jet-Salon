@@ -1,12 +1,5 @@
 <template>
   <div class="bg-white p-5">
-    <div class="my-5 text-center">
-      <h2 class="text-pink-500 font-weight-bold p-10">We look forward to welcoming you to Penh Jit Salon and helping you
-        achieve your beauty and wellness goals. Book your appointment today and let us embark on a journey of self-care
-        and rejuvenation together.
-      </h2>
-      <hr>
-    </div>
     <h1 class="text-center my-5 font-weight-bold ">Find us in your area</h1>
     <div class="row gap-4">
       <div v-for="location in locations" :key="location.id"

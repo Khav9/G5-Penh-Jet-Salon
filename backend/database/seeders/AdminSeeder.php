@@ -83,8 +83,18 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
 
+        $permission = Permission::create(['name' => 'Service access']);
+        $permission = Permission::create(['name' => 'Service edit']);
+        $permission = Permission::create(['name' => 'Service create']);
+        $permission = Permission::create(['name' => 'Service delete']);
 
+        $permission = Permission::create(['name' => 'Payment access']);
+        $permission = Permission::create(['name' => 'Payment create']);
 
+        $permission = Permission::create(['name' => 'Booking access']);
+        $permission = Permission::create(['name' => 'Booking create']);
+
+        
         $admin->assignRole($admin_role);
         $writer->assignRole($writer_role);
         $owner->assignRole($owner_role);

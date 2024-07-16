@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\ReplayResource;
 
 
 class ReplyController extends Controller
@@ -22,7 +23,7 @@ class ReplyController extends Controller
         $replies = Reply::where('comment_id', $id)->get();
         return response()->json([
             "success" => true,
-            "data" => $replies
+            "data" => ReplayResource::collection($replies)
         ], 200);
     }
 

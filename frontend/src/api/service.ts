@@ -15,3 +15,7 @@ export function createService(value: object) {
 export function deleteService(id: number) {
   return http.delete(`/service/destroy/${id}`);
 }
+
+export function showService(id: number) {
+  return http.get(`/service/show/${id}`);
+}

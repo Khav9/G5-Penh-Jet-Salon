@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Store;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ShopAddressResource;
 use App\Http\Resources\StoreByProvinceResource;
 use App\Http\Resources\StoreResource;
 use App\Models\Address;
@@ -55,23 +56,24 @@ class StoreController extends Controller
         ]);
     }
 
-    public function GetStoreByProvinceId(string $id){
-        $storeByProvinceId = [];
-        $stores = StoreResource::collection(Store::all());
-        foreach ($stores as $key => $store) {
-            if ( isset($store['address']) && $store['address']['province_id'] === $id){
-                $storeByProvinceId[] = $store;
-            }
-        }
-        $storeByProvinceId = StoreByProvinceResource::collection($storeByProvinceId);
-        $storeByProvinceIdCollection = collect($storeByProvinceId);
-        return response()->json([
-            'success'=> true,
-            'message'=> 'There are all store get by province id',
-            'Total' => $storeByProvinceIdCollection->count(),
-            'data' => $storeByProvinceId,
-      ]);
-    }
+    public function GetStoreByProvinceId(string $id)
+{
+    // Query stores with Eloquent and eager load address relationship
+    $stores = Store::whereHas('address', function ($query) use ($id) {
+            $query->where('province_id', $id);
+        })
+        ->with('address')
+        ->get();
+    // Format the response using your resource
+    $storeByProvinceId = StoreResource::collection($stores);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Stores fetched successfully by province id',
+        'total' => $storeByProvinceId->count(), // Count of returned items
+        'data' => $storeByProvinceId, // Actual data in resource format
+    ]);
+}
 
     /**
      * Store a newly created resource in storage.

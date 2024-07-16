@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { store } from '@/api/booking';
+import { fetchAllBooking, store } from '@/api/booking';
 
 export const useBookingStore = defineStore('booking', {
   state: () => ({
@@ -10,6 +10,14 @@ export const useBookingStore = defineStore('booking', {
       try {
         const newBooking = await store(formData);
         this.bookings.push(newBooking);
+      } catch (error) {
+        console.error('Error creating booking:', error);
+      }
+    },
+    async fetchAllBokkings() {
+      try {
+        const bookings = await fetchAllBooking();
+        this.bookings = bookings.data.data
       } catch (error) {
         console.error('Error creating booking:', error);
       }

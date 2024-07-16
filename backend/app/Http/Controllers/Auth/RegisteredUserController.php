@@ -78,6 +78,8 @@ class RegisteredUserController extends Controller
         $address = Address::create([
             'city' => $request->city,
             'province_id' => $request->province_id,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
 
         // Create the store

@@ -18,6 +18,7 @@ class CardItemResource extends JsonResource
             'id' => $this->id,
             'service_id' => $this->service_id,
             'quantity' => $this->quantity,
+            'store_id' => $this->service->store_id,
             'service' => [
                 'service_name' => $this->service->service_name,
                 'price' => $this->service->price,
@@ -25,5 +26,6 @@ class CardItemResource extends JsonResource
                 'image' => $this->service->image,
             ]
         ];
+    
     }
 }

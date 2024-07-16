@@ -13,4 +13,11 @@ class QRcode extends Model
         'qr_code',
         'store_id',
     ];
+
+    
+    public function store()
+    {
+        return $this->belongsTo(Store::class,'store_id','id');
+    }
+
 }

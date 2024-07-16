@@ -13,4 +13,8 @@ class Reply extends Model
     protected $fillable = [
         'comment_id', 'owner_id', 'text','images'
     ];
+
+    public function owner(){
+        return $this->belongsTo(User::class, 'owner_id');
+    }
 }

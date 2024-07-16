@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('city');
+            $table->decimal('lat', 17, 15);
+            $table->decimal('lng', 18, 15);
+            $table->unsignedBigInteger('province_id');
             $table->timestamps();
+
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+
         });
     }
 

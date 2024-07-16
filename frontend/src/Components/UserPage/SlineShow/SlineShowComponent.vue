@@ -8,7 +8,7 @@
       </div>
       <div class="carousel-inner">
         <div v-for="(image, index) in slide.slides" :key="image.id" :class="['carousel-item', { active: index === 0 }]">
-          <img :src="baseURL + image.image" class="d-block w-100" alt="" />
+          <img :src="baseURL + image.image" class="d-block w-100 h-90 " alt="" />
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

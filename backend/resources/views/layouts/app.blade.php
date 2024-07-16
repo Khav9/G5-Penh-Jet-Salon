@@ -21,7 +21,6 @@
 <body class="font-sans antialiased">
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
         <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
-
         @include('layouts.sidebar')
 
         <div class="flex-1 flex flex-col overflow-scroll">

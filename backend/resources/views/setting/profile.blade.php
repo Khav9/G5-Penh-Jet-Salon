@@ -20,12 +20,26 @@
                               placeholder="Enter email" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
                             />
                         </div>
+                        
+                        <div class="flex flex-col space-y-2">
+                            <label for="phone" class="text-gray-700 select-none font-medium">Phone</label>
+                            <input id="phone" type="text" name="phone" value="{{ old('phone',$user->phone) }}"
+                              placeholder="Enter Phone" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                            />
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <label for="location" class="text-gray-700 select-none font-medium">location</label>
+                            <input id="location" type="text" name="location" value="{{ old('location',$user->location) }}"
+                              placeholder="Enter location" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                            />
+                        </div>
 
                         <div class="flex text-gray-500 mt-5">
-                            <div class="bg-white rounded-lg">
-                              <div class="" x-data="imageData()">
-                                <div x-show="previewUrl == '' && imgurl == ''">
-                                  <p class="text-center uppercase text-bold">
+                          <div class="bg-white rounded-lg">
+                            <div class="" x-data="imageData()">
+                              <div x-show="previewUrl == '' && imgurl == ''">
+                                <p class="text-center uppercase text-bold">
                                     <label for="thumbnailprev" class="cursor-pointer">
                                       Upload a file
                                     </label>
@@ -33,15 +47,8 @@
                                         class="hidden thumbnailprev" @change="updatePreview()">
                                   </p>
                                 </div>
-                                <div x-show="previewUrl !== ''" class="relative w-24 h-24">
-                                  <img :src="previewUrl" alt="" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none h-full w-full object-cover">
-                                  <div class="ml-5">
-                                    <button type="button" class="" @click="clearPreview()">change</button>
-                                  </div>
-                                </div>
-
                                 <div x-show="imgurl !== ''" class="relative w-24 h-24">
-                                  <img :src="imgurl" alt="" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none h-full w-full object-cover">
+                                  <img src="{{ auth()->user()->profile }}" alt="" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none h-full w-full object-cover">
                                   <div class="ml-5">
                                     <button type="button" class="" @click="clearPreview()">change</button>
                                   </div>

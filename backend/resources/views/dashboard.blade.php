@@ -48,7 +48,7 @@
                 </svg>
                 <div class="ml-3">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Earning (Monthly)</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Earning</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">$XXX</p>
                 </div>
@@ -83,9 +83,9 @@
                 </svg>
                 <div class="ml-3">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-green-700 dark:text-white">Booking (Monthly)</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-green-700 dark:text-white">Booking</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">100</p>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">0</p>
                 </div>
             </div>
             <div class="flex max-w-sm p-3 bg-white border-l-4 border-pink-500 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -94,9 +94,9 @@
                 </svg>
                 <div class="ml-3">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-pink-700 dark:text-white">Earning (Monthly)</h5>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-pink-700 dark:text-white">Earning</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">100</p>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">$760</p>
                 </div>
             </div>
             <div class="flex max-w-sm p-3 bg-white border-l-4 border-red-500 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -107,7 +107,7 @@
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-red-900 dark:text-white">Admin %</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">100</p>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 font-bold">8%</p>
                 </div>
             </div>
             @endif

@@ -11,13 +11,11 @@ class Address extends Model
 
     protected $fillable = [
         'city',
-        'province_id'
+        'province_id',
+        'lat',
+        'lng'
     ];
 
-    // public function province()
-    // {
-    //     return $this->belongsTo(Province::class,'province_id','id');
-    // }
     public function province()
     {
         return $this->belongsTo(Province::class);

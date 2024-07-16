@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookingServiceListResource;
 use App\Http\Resources\CustomerBookingListResource;
+use App\Http\Resources\ListBookingResource;
 use App\Models\Booking;
 use App\Models\BookingService;
 use App\Models\CardItem;
@@ -20,22 +21,12 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //customer side
         $user = Auth::user();
-        $bookings = Booking::where('user_id', $user->id)->get();
+        $bookings = Booking::where('user_id', $user->id)->get(); // tem change some code 
         return response()->json([
             'success' => true,
             'message' => 'Bookings fetched successfully',
-            'result' => CustomerBookingListResource::collection($bookings)
-        ]);
-    }
-
-    public function getBookingService(string $id){
-        $services = BookingService::where('booking_id', $id)->get();
-        return response()->json([
-            'success' => true,
-            'message' => 'Bookings fetched successfully',
-            'result' => BookingServiceListResource::collection($services)
+            'data' => ListBookingResource::collection($bookings)
         ]);
     }
 
@@ -76,11 +67,15 @@ class BookingController extends Controller
 
             if ($service) {
                 $store_id = $service->store_id;
-                $total_price += $service->price;
                 BookingService::create([
                     "booking_id" => $booking->id,
                     "service_id" => $pre_booking->service_id,
                 ]);
+                if ($service->discount !== null){
+                    $total_price += $service->discount;
+                }else{
+                    $total_price += $service->price;
+                }
             }
         }
 

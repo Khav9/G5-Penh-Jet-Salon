@@ -21,7 +21,7 @@
     <div class="flex items-center">
         <div x-data="{ dropdownOpen: false }" class="relative">
             <button @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
-                <img class="h-full w-full object-cover" src="/images/{{ auth()->user()->profile }}" alt="Your avatar">
+                <img class="h-full w-full object-cover" src="{{ auth()->user()->profile }}" alt="Your avatar">
             </button>
 
             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
@@ -30,6 +30,10 @@
                 <a href="{{ route('admin.profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
                 @can('Payment create')
                 <a href="{{route('admin.payments.create')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Payment</a>
+                @endcan
+
+                @can('Payment access')
+                <a href="{{route('admin.payments.index')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Account balance</a>
                 @endcan
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf

@@ -1,8 +1,11 @@
 <!-- list shop in province -->
 <script setup lang="ts">
-import ListShopComponentVue from "../../../Components/UserPage/Shoplist/ListShopComponent.vue";
-
+import ListShopComponentVue from '../../../Components/UserPage/Shoplist/ListShopComponent.vue'
+import MapComponent from '../../../Components/map/MapCom.vue'
 </script>
 <template>
-  <ListShopComponentVue></ListShopComponentVue>
+  <div class="">
+    <MapComponent></MapComponent>
+    <ListShopComponentVue></ListShopComponentVue>
+  </div>
 </template>

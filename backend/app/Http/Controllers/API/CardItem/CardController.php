@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\CardItem;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CardItemResource;
 use App\Models\CardItem;
+use App\Models\QRcode;
 use App\Models\Service;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -18,16 +19,31 @@ class CardController extends Controller
      * List all data.
      */
 
-    public function index()
-    {
-        $user = Auth::user();
-        $cards = CardItem::where('user_id', $user->id)->get();
-        return response()->json([
-            'success' => true,
-            'message' => 'Service for pre_booking',
-            'data' => CardItemResource::collection($cards)
-        ]);
-    }
+     public function index()
+     {
+         $user = Auth::user();
+         $cards = CardItem::where('user_id', $user->id)->get();
+         $qrs = QRcode::all();
+         $cards = CardItemResource::collection($cards);
+         $QROwners = null;
+         
+         // Get the store_id from the first CardItem's service
+         $store_id = CardItem::where('user_id', $user->id)->first()->service->store_id;
+         
+         // Filter the QR codes and convert the collection to an array
+         foreach ($qrs as $key => $qr) {
+             if ($qr->store_id == $store_id) {
+                 $QROwners[] = $qr;
+             }
+         }
+         
+         return response()->json([
+             'success' => true,
+             'message' => 'Service for pre_booking',
+             'data' => $cards,
+             'qrOwner' => $QROwners,
+         ]);
+     }
 
     /**
      * Remove the specified resource from storage.

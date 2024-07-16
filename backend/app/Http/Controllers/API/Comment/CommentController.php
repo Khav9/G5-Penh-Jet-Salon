@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\commentResource;
 
 class CommentController extends Controller
 {
@@ -19,7 +20,7 @@ class CommentController extends Controller
         $comments = Comment::where('service_id', $id)->get();
         return response()->json([
             "success" => true,
-            "data" => $comments
+            "data" => CommentResource::collection($comments),
         ], 200);
     }
 

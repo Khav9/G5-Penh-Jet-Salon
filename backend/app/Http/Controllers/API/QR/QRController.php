@@ -4,15 +4,20 @@ namespace App\Http\Controllers\API\QR;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\QRcode;
 class QRController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
         //
+        $QRcodes = QRcode::where('id', $id)->get();
+        return response()->json([
+            'success'=> true,
+            'data' => $QRcodes
+      ]);
     }
 
     /**

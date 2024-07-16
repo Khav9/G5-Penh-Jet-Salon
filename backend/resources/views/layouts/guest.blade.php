@@ -20,5 +20,13 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtSAkdlKPhpaKbVV4B_m7QO2b8CrBEGJ8&libraries=places&callback=initialize" defer></script>
+
+        <script type="text/javascript" src="{{ asset('js/mapInput.js') }}"></script>
     </body>
 </html>

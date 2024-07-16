@@ -77,15 +77,22 @@ const router = createRouter({
       component: () => import('../views/Users/Shops/ListService.vue'),
       props: true
     },
-    {
-      path: '/listBooking',
-      name: 'listBooking',
-      component: () => import('../Components/OwnerPage/Booking/ListBooking.vue'),
-    },
+    // {
+    //   path: '/listBooking',
+    //   name: 'listBooking',
+    //   component: () => import('../Components/OwnerPage/Booking/ListBooking.vue'),
+    // },
     {
       path: '/message',
       name: 'message',
       component: () => import('../views/ShopOwner/Message/Message.vue')
+    },
+    {
+      path: '/comment/:id',
+      name: 'comment',
+      component: () => import('../views/Users/Shops/Comment/CommentService.vue'),
+      props: true
+
     },
   ],
   linkExactActiveClass: 'bg-danger text-white border-bottom',
